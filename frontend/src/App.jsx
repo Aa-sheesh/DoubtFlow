@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={!user?<Login />:<Timetable/>} />
-        <Route path="/timetable" element={<Timetable />} />
+        <Route path="/timetable" element={user?<Timetable />:<Home/>} />
       </Routes>
     </BrowserRouter>
   );

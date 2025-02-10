@@ -5,23 +5,26 @@ import Footer from "../components/Footer";
 import { useState } from "react";
 import { useUserStore } from "../stores/useUserStore";
 
-
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {login} = useUserStore();
+  const { login } = useUserStore();
+  const { user } = useUserStore();
 
-  const handleSubmit =(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // console.log(email,password);
-    login(email,password);
-  }
+    login(email, password);
+  };
 
   return (
     <>
       <Navbar />
-      <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-[80vh] text-white">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center justify-center h-[80vh] text-white"
+      >
         <input
           type="email"
           requiredvalue={email}
