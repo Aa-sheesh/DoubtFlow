@@ -7,7 +7,7 @@ export const getTimetable = async (req, res) => {
     //     message: "Unauthorized",
     //   });
     // }
-    const { branch, section } = req.body;
+    const { branch, section } = req.query;
     const query = await Timetable.findOne({ branch, section });
     const timeslots=query.timeslots;
     const timetable=query.timetable;

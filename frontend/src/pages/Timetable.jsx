@@ -18,21 +18,30 @@ import { useUserStore } from "../stores/useUserStore";
 
 function Timetable() {
   const today = new Date();
-  const yyyy = today.getFullYear();
-  let mm = today.getMonth() + 1; // Months start at 0!
-  let dd = today.getDate();
+  const day = today.getDay(); // Returns a number (0 for Sunday, 1 for Monday, etc.)
 
-  if (dd < 10) dd = "0" + dd;
-  if (mm < 10) mm = "0" + mm;
-
-  const formattedToday = dd + "/" + mm + "/" + yyyy;
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
   const user = useUserStore.getState().user;
+  const branch = user.branch;
+  const section = user.section;
   // getTimetable(user.branch,user.section);
-  const { getTimetable,timeslots,timetable } = useTimetableStore();
-  getTimetable(user.branch, user.section);
-  console.log(timetable);
-  // console.log(user);
-  // console.log(user.branch, user.section);
+  const { getTimetable } = useTimetableStore();
+  getTimetable(branch, section);
+  
+
+  const date = new Date();
+  const dateToday = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const fullDate = `${dateToday}/${month}/${year}`;
 
   return (
     <>
@@ -43,38 +52,20 @@ function Timetable() {
             title="Date"
             className="text-white container w-screen flex justify-center"
           >
-            <button className="cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="#FFFFFF"
-              >
-                <path d="M655-80 255-480l400-400 56 57-343 343 343 343-56 57Z" />
-              </svg>
-            </button>
-            <div className="pl-2 pr-2">{formattedToday}</div>
-            <button className="cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="#FFFFFF"
-              >
-                <path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z" />
-              </svg>
-            </button>
+            <div className="pl-2 text-2xl pr-2">
+              {fullDate}
+              <br />
+              <span className="flex justify-center">{daysOfWeek[day]}</span>
+            </div>
           </div>
-          
+
           <div className="bg-white container flex w-[80%] h-[14%] rounded-2xl ">
             <div className="p-5 w-screen">
               <div
                 id="left up "
                 className="w-[70%] text-black font-extrabold poppins-bold"
               >
-                CV 2001
+                
               </div>
               <div
                 id="left down"
