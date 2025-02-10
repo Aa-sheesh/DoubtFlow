@@ -14,6 +14,7 @@ export const useUserStore=create((set,get)=>({
             set({user:null});
             
         }
+        
     },
 
     logout: async()=>{

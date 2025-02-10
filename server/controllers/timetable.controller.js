@@ -8,13 +8,18 @@ export const getTimetable = async (req, res) => {
     //   });
     // }
     const { branch, section } = req.query;
+    // console.log(branch, section);
     const query = await Timetable.findOne({ branch, section });
-    const timeslots=query.timeslots;
-    const timetable=query.timetable;
+    // console.log(query);
+    
+    const timeslots = query.timeslots;
+    const timetable = query.timetable;
+    // console.log(timeslots);
     res.status(200).json({
       timeslots,
       timetable,
     });
+    // console.log("Timetable fetched successfully");
     
   } catch (error) {
     console.log("Error in getTimetable", error);

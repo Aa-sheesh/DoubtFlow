@@ -9,7 +9,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useUserStore();
-  const { user } = useUserStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
